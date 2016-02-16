@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Basketball Draft Guide</title>
+	
+	<link rel="stylesheet" href="style/bootstrap.min.css">
+	<link rel="stylesheet" href="style/style.css">
+	
+	<!--angular library-->
+	<script src="lib/angular/angular.min.js"></script>
+
+	<!--controller-->
+	<script src="js/controller.js"></script>
+	<script src="js/playerlist.js"></script>
+
+	<header>15-16 Basketball Season Draft Guide</header>
+</head>
+
+<body ng-app="myApp">
+	<h2 class="season">2014-2015 Season Stats</h2>
+
+	<form class="form-inline">
+		<div class="form-group">
+			<label>Search for Player</label>
+			<input type="text" ng-model="search" class="form-control" placeholder="Search">
+		</div>
+	</form>
+
+
+	<div class="main" ng-controller="PlayerController">
+
+		<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 scrollit">
+			<table class="playerlist">
+				<thead class="fixedHeader">
+
+					<tr>
+						<th ng-click="sort('firstName')"><a href="#">First Name<span class="glyphicon sort-icon" ng-show="sortKey=='firstName'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('lastName')"><a href="#">Last Name<span class="glyphicon sort-icon" ng-show="sortKey=='lastName'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('Pos')"><a href="#">Pos<span class="glyphicon sort-icon" ng-show="sortKey=='Pos'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('Salary')"><a href="#">Salary<span class="glyphicon sort-icon" ng-show="sortKey=='Salary'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('Team')"><a href="#">Team<span class="glyphicon sort-icon" ng-show="sortKey=='Team'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('G')"><a href="#">G<span class="glyphicon sort-icon" ng-show="sortKey=='G'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('GS')"><a href="#">GS<span class="glyphicon sort-icon" ng-show="sortKey=='GS'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('MP')"><a href="#">MPG<span class="glyphicon sort-icon" ng-show="sortKey=='MP'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('FG')"><a href="#">FG<span class="glyphicon sort-icon" ng-show="sortKey=='FG'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('FGp')"><a href="#">FG%<span class="glyphicon sort-icon" ng-show="sortKey=='FGp'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('threeP')"><a href="#">3P<span class="glyphicon sort-icon" ng-show="sortKey=='3P'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('FT')"><a href="#">FT<span class="glyphicon sort-icon" ng-show="sortKey=='FT'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('FTp')"><a href="#">FT%<span class="glyphicon sort-icon" ng-show="sortKey=='FTp'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('TRB')"><a href="#">REB<span class="glyphicon sort-icon" ng-show="sortKey=='TRB'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('AST')"><a href="#">AST<span class="glyphicon sort-icon" ng-show="sortKey=='AST'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('STL')"><a href="#">STL<span class="glyphicon sort-icon" ng-show="sortKey=='STL'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('BLK')"><a href="#">BLK<span class="glyphicon sort-icon" ng-show="sortKey=='BLK'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('TO')"><a href="#">TO<span class="glyphicon sort-icon" ng-show="sortKey=='TO'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('PF')"><a href="#">PF<span class="glyphicon sort-icon" ng-show="sortKey=='PF'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+						<th ng-click="sort('PTS')"><a href="#">PTS<span class="glyphicon sort-icon" ng-show="sortKey=='PTS'" ng-class="{'glyphicon glyphicon-triangle-bottom':reverse,'glyphicon glyphicon-triangle-top':!reverse}"></span></a></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="player in players | orderBy:sortKey:reverse| filter:search" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index)" ng-dblclick="pushClickedRow(player)">
+						<td>{{player.firstName}}</td>
+						<td>{{player.lastName}}</td>
+						<td>{{player.Pos}}</td>
+						<td>${{player.Salary | number:0}}</td>
+						<td>{{player.Team}}</td>
+						<td>{{player.G}}</td>
+						<td>{{player.GS}}</td>
+						<td>{{player.MP.toFixed(1)}}</td>
+						<td>{{player.FG.toFixed(1)}}</td>
+						<td>{{player.FGp.toFixed(3)}}</td>
+						<td>{{player.threeP.toFixed(1)}}</td>
+						<td>{{player.FT.toFixed(1)}}</td>
+						<td>{{player.FTp.toFixed(3)}}</td>
+						<td>{{player.TRB.toFixed(1)}}</td>
+						<td>{{player.AST.toFixed(1)}}</td>
+						<td>{{player.STL.toFixed(1)}}</td>
+						<td>{{player.BLK.toFixed(1)}}</td>
+						<td>{{player.TO.toFixed(1)}}</td>
+						<td>{{player.PF.toFixed(1)}}</td>
+						<td>{{player.PTS.toFixed(1)}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<!--playerlist table-->
+		</div>
+
+
+		<div class="selectedplayers" ng-controller="SelectedPlayerController">
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 fixed">
+				<h3 id="salarytotal">Current Salary: $65,000,000</h3>
+				<table class="selectedlist">
+					<thead>
+						<tr>
+							<th>Player Name</th>
+							<th>Position</th>
+							<th colspan="2">Salary</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="pickedplayer in selectedPlayers">
+							<td>{{pickedplayer.name}}</td>
+							<td>{{pickedplayer.position}}</td>
+							<td>${{pickedplayer.salary | number:0}}</td>
+							<td class="icon" ng-class="{'selected':$index == selectedRow}" ng-click="deleteSelectedPlayer($index, pickedplayer)"><span class="glyphicon glyphicon-remove"></span></td>
+						</tr>
+					</tbody>
+				</table>
+				<!--selectedlist table-->
+			</div>
+			<!--selectedplayers-->
+		</div>
+	</div>
+	<!--main div-->
+
+
+
+	
+
+</body>
+
+</html>

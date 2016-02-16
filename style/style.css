@@ -1,0 +1,144 @@
+body {
+	width: 100%;
+	background: url('../images/background.jpg') #2D2E2E no-repeat center center fixed;
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
+	-o-background-size: contain;
+	background-size: 100% 100%;
+}
+
+header {
+	color: #BDBDBD;
+	font-size: 30px;
+	font-family: fantasy, Arial, sans-serif;
+	text-align: center;
+}
+
+h2 {
+	color: #F8FAD2;
+	font-family: fantasy, Arial, sans-serif;
+	position: relative;
+	left: 1%;
+}
+
+label {
+	color: cornflowerblue;
+}
+
+.form-control {
+	height: 25px;
+}
+
+.main td {
+	color: #C3E4FA;
+}
+
+.main th {
+	width: auto;
+	color: #EEFAA2;
+}
+
+.main th a {
+	width: auto;
+	color: #EEFAA2;
+}
+
+.form-group {
+	padding: 10px;
+}
+
+table {
+	border-collapse: collapse;
+	margin: auto;
+}
+
+
+
+td {
+	padding: 5px;
+	border-bottom-style: solid;
+	border-width: 1px;
+}
+
+.selected {
+	background-color: #808080;
+	color: whitesmoke;
+	font-weight: bold;
+}
+
+.selectedList .playerlist {
+	display: inline-block;
+}
+
+.playerlist {
+	float: left;
+}
+
+.playerlist th {
+	text-align: left;
+	
+}
+
+
+.playerlist td {
+	text-align: left;
+}
+
+.selectedlist {
+	float: center;
+}
+
+.selectedlist th {
+	padding-right: 20px;
+	text-align: center;
+}
+
+.selectedlist td {
+	text-align: center;
+}
+
+h3 {
+	text-align: center;
+	font-family: fantasy, Arial, sans-serif;
+}
+
+.fixed {
+	height: 800px;
+	overflow-y: auto;
+}
+
+.fixheader {
+	position: fixed;
+}
+
+.scrollit {
+	height: 800px;
+	width: 980px;
+	overflow-y: auto;
+}
+
+h3 {
+	color: #AFB0E3;
+}
+
+.playerlist tbody tr:hover {
+	background-color: #808080;
+}
+
+.selectedlist .glyphicon {
+	visibility: hidden;
+}
+
+.selectedlist tr:hover .glyphicon {
+	visibility: visible;
+}
+
+td.icon .glyphicon {
+	color: red;
+}
+
+thead.fixedHeader a:hover {
+	color: #035570;
+	display: block;
+	text-decoration: underline;
+}
